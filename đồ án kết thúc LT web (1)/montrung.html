@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Món Trung</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <form id="emailLoginForm">
+                <input type="email" id="emailInput" placeholder="Email của bạn" required>
+                <input type="password" id="passInput" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+            </form>
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+
+
+    <h1>Các Món Ăn Trung</h1>
+
+<input id="search" placeholder="Tìm món..." style="padding:10px">
+<div id="card-container" class = "card-container"></div>
+<button class="back-button" onclick="window.location.href='index.html'">
+⬅ Trang chủ
+</button>
+
+
+<script>
+    const monTrung = [
+{id:"vitquay",name:"Vịt quay Bắc Kinh",area:"Vịt da giòn, thịt mềm, ăn kèm bánh tráng, dưa leo và sốt đặc trưng",image:"./anhbaocao/vitquaybackinh.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>• 1 con vịt 2-2,5kg<br>• 2 muỗng mật ong<br>• 1 muỗng giấm<br>• 1 muỗng chanh<br>• 1 muỗng rượu trắng<br>• 1 muỗng muối<br>• gừng và hành đập dập<br><br>- Cách làm:<br>• Sơ chế vịt: rửa với nước muối và gừng cho hết hôi<br>• Luộc vịt sơ 2-3phuts với hước sôi<br>• Quét mật ong + giấm + chanh đều lên da vịt<br>• Quay nướng: làm nóng lò 180 độ nướng 35-40p tăng lên 220 độ cho da vịt giòn<br>• Ăn"
+},
+{id:"mapodauhu",name:"Phật Nhảy Tường",area:"Canh hầm cao cấp, gồm bào ngư, hải sâm, thịt và thảo dược bổ dưỡng",image:"./anhbaocao/phatnhaytuong.png",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Đùi gà ta<br>• sườn heo<br>• tôm khô/ mực khô<br>• nấm đông cô<br>• bào ngư<br>• trứng cút<br>• táo tàu/kủ tử<br>• gừng<br>• rượu thiệu hưng<br>• nước hầm ga<br><br>- Cách làm:<br>• Sơ chế: gà + sườn trụng nước sôi<br>• tôm/mực khô ngâm mềm<br>• nấm đông cô ngâm nở<br>• Phi gừng với chút dầu<br>• Thêm 1-2 muỗng rượu<br>• Hầm: ch0 tất cả nguyên liệu vào nồi hầm nhỏ 1,5-2 tiếng <br>• Nêm muối vừa ăn<br>• múc ra chén và thưởng thức"
+},
+{id:"hau",name:"Mì Cay Nóng Vũ Hán",area:"Mì trộn cay nồng, đậm mùi ớt, tê nhẹ đầu lưỡi",image:"./anhbaocao/vuhan.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Mì trứng/ mì tươi/mì gói<br>• 2-3 cái móng heo<br>• ớt khô + sa tế<br>• tỏi băm<br>• hành lá, mè rang<br>• nấm kim châm<br>• cải thìa<br>• đậu hủ non<br><br>- Gia vị:<br>• nước tương<br>• dầu hào<br>• hạt nêm<br>• đường<br>• dấm đen<br>• ớt bột Tứ xuyên<br><br>- Cách làm:<br>• Hầm móng heo: trụng với nước sôi thêm chút gừng + muối 30-40p cho mềm<br>• Làm nước sốt cay: phi tỏi+gừng với dầu<br>• cho ớt khô satee vào xào thơm<br>• thêm: 2 muỗng nước tương<br>• 1 muỗng dầu hào<br>• 1,2 muỗng đường<br>• 1 muỗng dấm đen<br>• Cho nấm rau và đầu hủ vào<br>• thả mì nấu chín<br>• cho móng heo vào<br>• rắc hành mè vô và ăn"
+},
+{id:"lanzhou",name:"Cá Hấp Ớt Lan Châu",area:"Cá hấp mềm, phủ ớt cay và gia vị Tứ Xuyên thơm nồng",image:"./anhbaocao/cahapotgiangtay.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Cá nào cũng được<br>• ớt khô + ớt tươi<br>• gừng thái sợi<br>• hành lá, tỏi<br>• nước tương<br>• dầu điều<br>• đường<br>• dầu nóng<br><br>- Cách làm:<br>• cá rửa sạch với muối cho bớt tanh<br>• khứa nhẹ hấp 10-12p<br>• phi tỏi gừng ớt cho thơm<br>• cho 2 muỗng nước tương+ 1 muỗng dầu hào+ xíu đường<br>• rưới hỗn hợp lên cá, thêm hành chan dầu nóng<br>• Ăn"
+},
+{id:"xiaolongbao",name:"Đậu Phụ Mapo Tứ Xuyên",area:"Đậu phụ sốt cay tê, thịt băm và tiêu hoa tiêu",image:"./anhbaocao/dauphumapotuxuyen.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Đậu hũ non<br>• thịt băm<br>• tỏi, gừng, ớt<br>• bợt ớt tứ xuyên<br>• đậu tương cay<br><br>- Cách làm:<br>• phi tỏi+gừng+ớt cho thơm<br>• cho thịt băm vào xào chín<br>• thêm 1,2 chén nước + 1 muỗng nước tương + 1 muỗng dầu hào quậy đều<br>• cho đậu hủ cắt khối vào đun nhẹ lửa 5p cho thâm gia vị<br>• rắc hành + bột tiêu Tứ Xuyên tắt bếp<br>• ăn"
+},
+{id:"chao",name:"Thịt Kho Đông Pha",area:"Thịt ba chỉ kho mềm rục, béo thơm, màu nâu đỏ hấp dẫn",image:"./anhbaocao/thitkhodongpha.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Thịt heo ba rọi<br>• gừng, hành lá<br>• đường phèn<br>• nước tương<br>• rượu trắng<br>• tiêu<br><br>- Cách làm:<br>• Thịt ba rọi cắt khối vuông vừa ăn, trụng sơ nuoc sôi<br>• Xếp thịt vào nồi, thêm gừng, hành lá<br>• cho 3 muỗng nước tương + 2 muỗng rượu + 1 muỗng đường phèn + nước xâm xấp<br>• Kho nhỏ lửa 60-90p đến khi thịt mềm nước sệt<br>• có thể ăn chung với cơm trắng"
+},
+{id:"suon",name:"Mì Dan Dan",area:"Mì trộn cay, sốt mè, thịt băm và ớt dầu",image:"./anhbaocao/midandan.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Mì trứng<br>• thịt băm<br>• tỏi,gừng,hành lá, đậu phộng rang<br>• Sốt: sate/ớt dầu/giấm đen/ dầu mè<br><br>- cách làm:<br>• Luộc mì để ráo<br>• phi tỏi + gừng sa tế và cho thịt băm vào xào chín<br>• Trộn 1 muỗng xì dầu + 1 muỗng giấm đen+ 1 muỗng đường<br>• cho mì vào tô, chan nước thịt và sốt<br>• trộn đều và ăn"
+},
+{id:"dumpling",name:"Mì Biang Biang",area:"Mì sợi to bản, dai, trộn ớt dầu và gia vị đậm đà",image:"./anhbaocao/mibiangbiang.png",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Mì sợi bản to dẹp<br>• tỏi băm, ớt bột, hành lá<br>• cải thìa<br><br> - Gia vị:<br>• xì dầu<br>• giấm đen<br>• dầu mè<br>• đường<br><br>- Cách làm:<br>• Luộc mì và rau vớt để ráo<br>• rắc lên mì : tỏi +ớt bột+ hành<br>• cham 2 muỗng dầu nóng cho dậy mùi<br>• thêm 1 muỗng xì dầu: 1 muỗng giấm đen <br>• trộn đều và ăn"
+},
+];
+
+render(monTrung);
+
+function render(ds){
+const box=document.getElementById("card-container");
+box.innerHTML="";
+ds.forEach(mon=>{
+ const card=document.createElement("div");
+ card.className="card";
+ card.innerHTML=`
+ <img src="${mon.image}">
+ <h2>${mon.name}</h2>
+ <p><b>Mô tả:</b><br> ${mon.area}</p>`;
+ card.onclick=()=>{
+ localStorage.setItem("ct",JSON.stringify(mon));
+ window.location="congthuc.html";
+ };
+ box.appendChild(card);
+});
+}
+
+document.getElementById("search").oninput=function(){
+ let key=this.value.toLowerCase();
+ let loc=monTrung.filter(m=>m.name.toLowerCase().includes(key));
+ render(loc);
+}
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" class="f-logo">
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <div>0935.656.603<br>0989.390.139<br>0986.265.679</div>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="#">Trường TCCN Bình Dương</a>
+            </div>
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-column address-col">
+            <div class="address-info">
+                <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+                <div class="info-box">
+                    <span>📍 Địa chỉ:</span>
+                    <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp Bình Dương
+                </a>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6358352656363!2d106.7770884!3d11.0284422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174da34c7159483%3A0x2b496501042687fe!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5n Nghi峄囈cCBCw6G5oIETGsMahbmc!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy">
+                </iframe>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

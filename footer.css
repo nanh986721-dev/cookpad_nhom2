@@ -1,0 +1,103 @@
+/* Tổng quát */
+.footer {
+    background-color: #fff;
+    padding: 30px 5%;
+    margin-top: 40px;
+    color: #4a633c;
+    font-family: Arial, sans-serif;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Container chính chia làm 4 phần để đều tuyệt đối */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start; /* Dịch về bên trái */
+    align-items: flex-start;    /* Căn các phần tử bằng đầu ở phía trên */
+    gap: 35px;
+}
+
+/* Thiết lập cho từng cột */
+.footer-column {
+    flex: 1; /* Mỗi cột chiếm độ rộng bằng nhau */
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Tránh tràn layout */
+}
+
+/* Thu nhỏ logo và căn lề */
+.logo-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center; /* Căn logo vào giữa theo chiều dọc của container */
+}
+
+.f-logo {
+    /* Thu nhỏ từ 80px-100px xuống còn khoảng 60px-65px để vừa với 3 dòng hotline */
+    width: 65px; 
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+
+/* Cột địa chỉ & Bản đồ (Cột cuối) */
+.address-col {
+    flex: 2; /* Cột này chứa cả map nên cho rộng gấp đôi các cột khác */
+    display: flex;
+    flex-direction: row; /* Chữ một bên, map một bên */
+    gap: 5px;
+}
+
+.address-info {
+    flex: 1;
+}
+
+/* Nội dung bên trong mỗi hộp */
+.info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #4a633c;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.info-box span {
+    font-weight: 700;
+    color: #AB886D;
+    white-space: nowrap;
+}
+
+/* Tinh chỉnh bản đồ giống ảnh mẫu */
+iframe {
+    width: 350px;
+    height: 110px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* Slogan nằm trên cùng của cột địa chỉ */
+.slogan {
+    font-style: italic;
+    font-size: 14px;
+    color: #4a633c;
+    border-left: 3px solid #AB886D;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 990px) {
+    .footer-container {
+        flex-wrap: wrap;
+    }
+    .footer-column {
+        flex: 1 1 45%; /* Trên máy tính bảng chia 2 cột mỗi hàng */
+    }
+    .address-col {
+        flex: 1 1 100%;
+    }
+}

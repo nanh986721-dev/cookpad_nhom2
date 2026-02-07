@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        #4a633c 0%, 
+        #4a633c 40%, 
+        #AB886D 100%);
+}
+
+
+.container {
+    width: 1100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+}
+
+
+.container .card {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease-in-out;
+}
+
+
+.container .card:hover {
+    height: 350px; 
+}
+
+
+.container .card .imgBx {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    top: -60px;
+    left: 20px;
+    z-index: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+    border: 4px solid #ffffff;
+}
+
+
+.container .card .imgBx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.container .card .content {
+    position: relative;
+    margin-top: -140px;
+    padding: 15px;
+    text-align: center;
+    color: #ffffff;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+
+.container .card .content h2 {
+    color: #ffffff;
+}
+
+.container .card .content p {
+    color: #f0f0f0;
+    font-size: 0.9em;
+}
+
+
+.container .card:hover .content {
+    visibility: visible;
+    opacity: 1;
+    margin-top: -30px;
+}
+
+
+.back-navigation {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #AB886D;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+    background-color: #4a633c; 
+    color: #ffffff;
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-text {
+    color: #333;
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Món Thái</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <form id="emailLoginForm">
+                <input type="email" id="emailInput" placeholder="Email của bạn" required>
+                <input type="password" id="passInput" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+            </form>
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+
+
+    <h1>Các Món Ăn Thái</h1>
+
+<input id="search" placeholder="Tìm món..." style="padding:10px">
+<div id="card-container" class="card-container"></div>
+<button class="back-button" onclick="window.location.href='index.html'">
+⬅ Trang chủ
+</button>
+
+
+<script>
+    const monThai=[
+{id:"padthai",name:"Boat Noodles",area:"Mì nước Thái, nước dùng đậm đà, có thịt bò/heo, viên thịt và rau thơm",image:"./anhbaocao/Boat Noodles.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Mì gạo<br>• trứng cút<br>• thịt bò viên<br>• giá đỗ<br>• rau thơm<br>• hành phi giòn<br><br>- Nước dùng:<br>• nước hầm xương<br>• nước mắm<br>• xì dầu đen<br>• đường thốt nốt<br>• sate<br><br>- Cách làm:<br>• Nấu nước xương cho tỏi vào thơm<br>• nêm 2 muỗng nước mắm + 1 muỗng xì dầu đen + 1,2 muỗng đường<br>• trụng mì + thịt cho vào tô<br>• chan nước dùng thêm giá và rau ăn kèm<br>• thưởng thức"
+},
+{id:"tomyum",name:"Gaeng Tai Pla",area:"Cà ri miền Nam Thái, vị mặn cay đặc trưng, nấu với cá và rau củ",image:"./anhbaocao/Gaeng Tai Pla.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Cá thu/cá basa<br>• cà tím<br>• đậu đũa<br>• măng chua<br>• ớt/sả/tỏi/hành tím<br><br>- gia vị:<br>• mắm cá<br>• nước mắm<br>• đường thốt nốt<br>• bột cà ri Thái<br><br>_ Cách làm:<br>• Xay ớt + sả + tỏi + hành cho nhuyễn<br>• phi hỗn hợp cho thơm, cho bột cà ri vào<br>• đỗ nước + mắm cá nấu sôi <br>• cho cá và rau vào<br>• nêm nước mắm và nấu 10-15p<br>• vớt ra chén và ăn"
+},
+{id:"somtam",name:"Kung Ob Woon Sen",area:"Tôm hấp miến, thơm mùi tiêu, gừng và thảo mộc",image:"./anhbaocao/Kung Ob Woon Sen.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• tôm<br>• miếng dong<br>• tỏi, gừng<br>• tiêu, hành lá<br><br>- Gia vị: nước mắm<br>• dầu mè<br>• dầu hào<br>• đường<br><br>- Cách làm:<br>• ngâm miếng mềm<br>• phi tỏi + gừng + tiêu<br>• trộn miếng với 1 muỗng nước mắm + 1 muỗng dầu hào + 1,2 muỗng đường + dầu mè<br>• cho miến xuống nồi xếp tôm lên trên<br>• đậy nắp và hấp 10-12p<br>• rắc hành và thưởng thức"
+},
+{id:"curry",name:"Khao Moo Daeng",area:"Cơm thịt heo quay, xá xíu, ăn kèm trứng luộc và nước sốt ngọt",image:"./anhbaocao/Khao Moo Daeng.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• thịt heo ba rọi<br>• trứng luộc<br>• dưa leo<br>• cơm trắng<br><br>- Ướp thịt: <br>• xì dầu<br>• dầu hào<br>• mật ong<br>• tỏi, tiêu<br>• màu điều<br><br>- nước sốt:<br>• nước luộc thịt + xì dầu + dầu hào + đường + bột năng<br><br>- Cách làm:<br>• Ướp thịt 30p và cho vào lò nướng 180 độ và cắt lát<br>• nấu nước cốt từ nước luộc thịt + gia vị và cho xíu bột nặng tạo độ sệt<br>• xếp cơm + thịt + trứng cho đẹp mắt <br>• chan sốt lên trên<br>• ăn"
+},
+{id:"gaengsom",name:"Gaeng Som",area:"Canh chua cay Thái, thường nấu với cá và rau, vị chua rõ",image:"./anhbaocao/Gaeng Som.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br>• cá thu/cá basa<br>• bắp cải hoặc đu đủ xanh<br><br>- Gia vị xay:<br>• ớt khô<br>• hành tím<br>• mắm tôm Thái<br>• me chua<br><br>- Cách làm:<br>• Xay ớt + hành + tỏi + mắm <br>• Phi đều hỗn hợp cho vào nước sôi<br>• Cho cá + rau thêm me, nêm nước mắm + xíu đường<br>• Nấu 10p<br>• Ăn với cơm"
+},
+{id:"kha",name:"Panang Curry",area:"Cà ri đỏ sệt, béo nước cốt dừa, cay nhẹ, thường nấu với thịt",image:"./anhbaocao/Panang Curry.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Thịt gà/bò/heo<br>• cà ri Panang<br>• nước cốt dừa<br>• lá chanh, ớt đỏ<br><br>- gia vị:<br>• nước mắm<br>• đường thốt nốt<br>• dầu ăn<br><br>- Cách làm:<br>• phi 2 muỗng cà ri Panang với 1,2 chén nước cốt dừa<br>• cho thịt vào xào săn<br>• thêm phần nước cốt dừa còn lại nấu 10p<br>• nêm 1 muỗng nước mắm + 1 muỗng đường và cho lá canh với ớt vào<br>• Sào đến khi sệt<br>• ăn cùng với cơm hoặc chấm bánh mì.."
+},
+{id:"moo",name:"Sai Krok Isan",area:"Xúc xích lên men vùng Isan, vị chua nhẹ, ăn kèm rau sống",image:"./anhbaocao/Sai Krok Isan.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Thịt heo xay<br>• mỡ hạt lựu<br>• cơm nguội<br>• tỏi băm, muối, tiêu<br><br>- Cách làm:<br>• trộn thịt mỡ , mỡ, cơm , tỏi , muối tiêu trộn đều<br>• Nhồi vào vỏ xúc xích, buộc đan<br>• ủ nơi ấm 1-2 ngày cho lên men nhẹ<br>• nướng đến khi vàng<br>• có thể ăn ngay"
+},
+{id:"larb",name:"Larb",area:"Gỏi thịt băm trộn thính, chanh, ớt, bạc hà, cay và thơm",image:"./anhbaocao/Larb.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Thịt băm(gà/heo/bò)<br>• hành tím<br>• bạc hà<br>• rau mùi<br><br>- Gia vị:<br>• nước mắm<br>• nước cốt chanh<br>• ớt bột<br>• thính gạo<br>• đường <br><br>- Cách làm:<br>• luộc/xào thịt cho chín<br>• trộn 1 muõng nước mắm + 1 muỗng chanh + 1,2 muỗng đường<br>• ớt bột<br>• cho thịt và hành rau vào <br>• rắc thính<br>• trộn đều<br>• và ăn"
+},
+];
+
+render(monThai);
+
+function render(ds){
+const box=document.getElementById("card-container");
+box.innerHTML="";
+ds.forEach(mon=>{
+ const card=document.createElement("div");
+ card.className="card";
+ card.innerHTML=`
+ <img src="${mon.image}">
+ <h2>${mon.name}</h2>
+ <p><b>Mô tả:</b><br> ${mon.area}</p>`;
+ card.onclick=()=>{
+ localStorage.setItem("ct",JSON.stringify(mon));
+ window.location="congthuc.html";
+ };
+ box.appendChild(card);
+});
+}
+
+document.getElementById("search").oninput=function(){
+ let key=this.value.toLowerCase();
+ let loc=monThai.filter(m=>m.name.toLowerCase().includes(key));
+ render(loc);
+}
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" class="f-logo">
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <div>0935.656.603<br>0989.390.139<br>0986.265.679</div>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="#">Trường TCCN Bình Dương</a>
+            </div>
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-column address-col">
+            <div class="address-info">
+                <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+                <div class="info-box">
+                    <span>📍 Địa chỉ:</span>
+                    <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp Bình Dương
+                </a>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6358352656363!2d106.7770884!3d11.0284422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174da34c7159483%3A0x2b496501042687fe!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5n Nghi峄囈cCBCw6G5oIETGsMahbmc!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy">
+                </iframe>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24N01234 - 24N01235</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <!-- FORM ĐĂNG NHẬP -->
+<form id="emailLoginForm">
+    <input type="email" id="loginEmail" placeholder="Email của bạn" required>
+    <input type="password" id="loginPass" placeholder="Mật khẩu" required>
+    <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+    <p class="switch-auth">Chưa có tài khoản? <span id="showRegister">Đăng ký</span></p>
+</form>
+
+<!-- FORM ĐĂNG KÝ -->
+<form id="emailRegisterForm" style="display:none;">
+    <input type="email" id="regEmail" placeholder="Email đăng ký" required>
+    <input type="password" id="regPass" placeholder="Mật khẩu" required>
+    <button type="submit" class="btn-email">Đăng ký tài khoản</button>
+    <p class="switch-auth">Đã có tài khoản? <span id="showLogin">Đăng nhập</span></p>
+</form>
+
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+
+<br>
+    <div id="card-container" class="card-container"></div>
+    <h1></h1>
+    <div id="footer-container"></div>
+    <script>
+        fetch("footer.html")
+        .then(dulieu=>dulieu.text())
+        .then(thongtin=>{
+            document.getElementById("footer-container").innerHTML=thongtin;
+        })
+        
+    </script>
+
+
+    <script src="main.js"></script>
+</body>
+</html>

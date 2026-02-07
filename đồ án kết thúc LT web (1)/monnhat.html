@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Món Nhật</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="footer.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <form id="emailLoginForm">
+                <input type="email" id="emailInput" placeholder="Email của bạn" required>
+                <input type="password" id="passInput" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+            </form>
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+
+<br>
+  
+
+<h1>Các Món Ăn Nhật</h1>
+
+<input id="search" placeholder="Tìm món..." style="padding:10px">
+<div id="card-container" class = "card-container"></div>
+<button class="back-button" onclick="window.location.href='index.html'">
+⬅ Trang chủ
+</button>
+
+
+<script>
+    const monNhat=[
+{id:"Sushi",name:"Sushi",area:"Cơm trộn giấm ăn kèm hải sản tươi sống hoặc chín",image:"./anhbaocao/sushi.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>-  Phần cơm:<br>• 2 chén gạo Nhật (gạo dẻo)<br>• 2,5 chén nước<br>• 3 muỗng giấm gạo<br>• 2 muỗng đường<br>• 1,2 muỗng muối<br><br>- Phần nhân:<br>• Thanh cua, cá hồi, trứng cuộn<br>• Dưa leo<br>• Cà rốt<br>• Bơ<br>• Rong biển cuộn<br>• Wasabi<br>• Nước tương Nhật<br><br>- Cách làm:<br>- Bước 1: Nấu cơm sushi<br>• Vo gạo nấu chín<br>• Trộn giấm + đường + muối và rưới vào cơm nóng<br>• Xới nhẹ cho cơm nguội và bong<br><br>- Bước 2: Chuẩn bị nhân<br>• Cắt tất cả nhân thành sợi dài<br><br>- Bước 3: Cuộn sushi<br>• Trải rong biển lên mành tre<br>• Dàn mỏng cơm<br>• Cho nhân vào<br>• Cuộn chặt tay<br>• Dùng dao ướt cắt khoanh<br>• Ăn"
+},
+
+{id:"tomyum",name:"Sashimi",area:"Hải sản tươi sống cắt lát mỏng, không dùng cơm",image:"./anhbaocao/sashimi.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Cá hồi/ cá ngừ (loại ăn sống)<br>• Wasabi, nước tương Nhật<br>• Gừng hồng<br><br>- Cách làm<br>• Cá rửa nhanh, lau khô để ngăn đá 10-15 phút cho săn lại<br>• Dùng dao thật bén cắt lát xéo dày 0,5cm<br>• Xếp ra đĩa chấm wasabi, nước tương<br>• Thưởng thức liền"
+},
+
+{id:"somtam",name:"Takoyaki",area:"Bánh bạch tuộc viên tròn chiên, phủ sốt đặc trưng",image:"./anhbaocao/Takoyaki.jpeg",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>- Phần bột:<br>• 100g bột mì<br>• 1 trứng gà<br>• 300ml nước<br>• 1,2 muỗng cà phê muối<br>• 1,2 muỗng cà phê bột nêm<br><br>- Nhân:<br>• Bạch tuột luộc, cắt lựu đạn<br>• Hành lá xắt nhỏ<br>• Gừng đỏ muối<br><br>- Ăn kèm:<br>• Sốt takoyaki<br>• Mayonnaise<br>• Cá bào khô<br>• Rong biển bột<br><br>- Cách làm:<br>• Pha bột:<br>Trộn bột mì + trứng + nước + muối + bột nêm khuấy đều cho mịn, không bón<br>• Làm nóng khuôn takoyaki, quét dầu từng ô<br>• Đổ bột đầy khuôn:<br>Cho bạch tuột và hành lá vào mỗi ô<br>• Khi mặt dưới se  lại, dùng que lật 90-180 độ cho tròn đều<br>• Lăn bánh đều đến khi vàng giòn<br>• Bày ra đĩa và thưởng thức "
+},
+
+{id:"curry",name:"Okonomiyaki",area:"Bánh xèo Nhật làm từ bắp cải, trứng và thịt",image:"./anhbaocao/Okonomiyaki.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>- Phần bột:<br>• 100g bột mì<br>• 1 trứng gà<br>• 120-150ml nước<br>• 1,2 muỗng cà phê muối/bột nêm<br><br>- Phần nhân:<br>• Bắp cải thái sợi<br>• Hành lá<br>• Thịt ba chỉ/tôm/mực<br>• Có thể thêm phô mai kéo sợi<br><br>- Topping:<br>• Sốt okonomiyaki<br>• Mayonnaise<br>• Cá bào khô<br>• Rong biển bột<br><br>- Cách làm:<br>• Trộn bột + trứng + nước + muối và khuấy cho mịn<br>• Cho bắp cải hành lá vào nhân trộn đều<br>• Đổ hỗn hợp vào chảo chống dính (lửa vừa)tạo hình bánh<br>• Áp chảo 3-4p cho mặt vàng<br>• Rưới sốt và rắc rong biển lên trên mặt bánh<br>• Ăn nóng ngon nhất"
+},
+
+{id:"gaengsom",name:"Mì Ramen",area:"Mì nước Nhật với nước dùng đậm đà và thịt",image:"./anhbaocao/ramen.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br>- Phần mì:<br>• Mì ramen (hoặc mì trứng/mì không có gia vị)<br><br>- Nước dùng:<br>• 500ml nước<br>• 1 khúc xương heo hoặc ức gà<br>• 1 muỗng canh nước tương<br>• 1 muỗng cà phê dầu mè<br>• 1,2 muỗng cà phê bột nêm<br>• 1 tép tỏi<br>• Gừng cắt lát<br><br>- Topping:<br>• Thịt heo quay/gà/chả cá<br>• Trứng luộc lòng đào<br>• Rong biển<br>• Bắp hạt/nấm<br>• Hành lá<br><br>- Cách làm :<br>• Ninh xương/gà với tỏi và gừng 20-30p<br>• Nêm nước tương và dầu mè bột nêm<br>• Luộc mì riêng cho vào tô<br>• Chan nước dùng<br>• Xếp topping lên trên<br>• Ăn"
+},
+
+{id:"kha",name:"Mì Udon",area:"Mì sợi to, mềm, dùng với nước dùng thanh nhẹ",image:"./anhbaocao/Udon.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>- Phần mì:<br>• Mì udon tưới/udon khô<br><br>- Nước dùng:<br>• 500ml nước<br>• 1 muỗng canh nước tương<br>• 1,2 muỗng cà phê bột nêm<br>• 1,2 muỗng cà phê dầu mè<br>• 1 lát gừng<br><br>- Topping:<br>• Thịt bò/gà/tôm<br>• Trứng luộc<br>• Đậu hũ<br>• Rong biển<br>• Hành lá<br><br>- Cách làm:<br>• Đun nước + nước tương + dầu mè + gừng<br>• Luộc mì udon riêng cho vào tô<br>• Cho topping vào nước dùng nấu chín<br>• Chan mì lên nước dùng<br>• Rắc hành lá<br>• Ăn"
+},
+
+{id:"moo",name:"Tempura",area:"Hải sản hoặc rau củ tẩm bột chiên giòn",image:"./anhbaocao/Tempura.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>- Bột tempura:<br>• 100g bột mì<br>• Trứng gà<br>• 150ml nước<br>• 1,2 muỗng cà phê muối<br><br>- Phần nhân:<br>• Tôm lột vỏ<br>• Mực/cá<br>• Khoai lang lát mỏng<br>• Bí đỏ/cà rốt/nấm<br>• Dầu ăn<br><br>- Cách làm:<br>• TRộn trứng + nước lạnh cho bột vào khuấy nhẹ<br>• Làm nóng dầu<br>• Nhúng tôm/rau vào bột cho vào chiên<br>• Chiên đến khi vàng nhạt, giòn<br>• Gắp ra thấm dầu<br><br>- Nước chấm:<br>• 2 muỗng nước tương<br>• 1 muỗng nước<br>• chút gừng<br>• chấm và ăn"
+},
+
+{id:"larb",name:"Tonkatsu",area:"Thịt heo tẩm bột chiên xù, ăn kèm sốt ngọt mặn",image:"./anhbaocao/Tonkatsu.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Thịt heo cốt lết<br>• muối+tiêu<br>• 1 trứng gà<br>• bột mì<br>• bột chiên xù<br>• dầu ăn<br><br>- Ăn kèm:<br>• Bappws cải bào sợi<br>• Cà chua<br>• Sốt tonkatsu<br><br>- Cách làm:<br>• Dần nhẹ thịt ướp muối tiêu<br>• Lăn thịt qua bột mì - trứng - bột xù<br>• Dầu nóng vừa cho thịt vào chiên 4-5p rồi lật<br>• Khi vàng giòn vớt ra ráo cắt lát<br><br>- Nước sốt pha tại nhà:<br>• 2 muỗng ketchup<br>• 1 muỗng nước tương<br>• 1 muỗng đường<br>• 1,2 muỗng giấm<br>• trộn đều và chấm"
+},
+
+];
+
+render(monNhat);
+
+function render(ds){
+const box=document.getElementById("card-container");
+box.innerHTML="";
+ds.forEach(mon=>{
+ const card=document.createElement("div");
+ card.className="card";
+ card.innerHTML=`
+ <img src="${mon.image}">
+ <h2>${mon.name}</h2>
+<p><b>Mô tả:</b><br> ${mon.area}</p>`;
+ card.onclick=()=>{
+ localStorage.setItem("ct",JSON.stringify(mon));
+ window.location="congthuc.html";
+ };
+ box.appendChild(card);
+});
+}
+
+document.getElementById("search").oninput=function(){
+ let key=this.value.toLowerCase();
+ let loc=monNhat.filter(m=>m.name.toLowerCase().includes(key));
+ render(loc);
+}
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" class="f-logo">
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <div>0935.656.603<br>0989.390.139<br>0986.265.679</div>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="#">Trường TCCN Bình Dương</a>
+            </div>
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-column address-col">
+            <div class="address-info">
+                <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+                <div class="info-box">
+                    <span>📍 Địa chỉ:</span>
+                    <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp Bình Dương
+                </a>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6358352656363!2d106.7770884!3d11.0284422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174da34c7159483%3A0x2b496501042687fe!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5n Nghi峄囈cCBCw6G5oIETGsMahbmc!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy">
+                </iframe>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

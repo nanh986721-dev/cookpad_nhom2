@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Thành viên</title>
+  <link rel="stylesheet" href="thanhvien.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <!-- FORM ĐĂNG NHẬP -->
+<form id="emailLoginForm">
+    <input type="email" id="loginEmail" placeholder="Email của bạn" required>
+    <input type="password" id="loginPass" placeholder="Mật khẩu" required>
+    <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+    <p class="switch-auth">Chưa có tài khoản? <span id="showRegister">Đăng ký</span></p>
+</form>
+
+<!-- FORM ĐĂNG KÝ -->
+<form id="emailRegisterForm" style="display:none;">
+    <input type="email" id="regEmail" placeholder="Email đăng ký" required>
+    <input type="password" id="regPass" placeholder="Mật khẩu" required>
+    <button type="submit" class="btn-email">Đăng ký tài khoản</button>
+    <p class="switch-auth">Đã có tài khoản? <span id="showLogin">Đăng nhập</span></p>
+</form>
+
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+</header>
+
+
+  <div class="container">
+
+    <!-- THÀNH VIÊN 1 -->
+    <div class="card">
+      <div class="imgBx">
+        <img src="./logo (1)/nanh.jpg" alt="Thành viên 1">
+      </div>
+
+      <div class="content">
+        <h2>Hồ Nguyễn Ngọc Anh</h2>
+        <p>
+          Mssv: 24N01235<br>
+          Sống thiếu gay hồn bay một nửa
+        </p>
+      </div>
+    </div>
+
+    <!-- THÀNH VIÊN 2 -->
+    <div class="card">
+      <div class="imgBx">
+        <img src="./logo (1)/nmeo.jpg" alt="Thành viên 2">
+      </div>
+
+      <div class="content">
+        <h2>Lưu Hiếu Ngọc</h2>
+        <p>
+          Mssv: 24N01234<br>
+          Chuyện tình lận đận nên không thiếu đơn phương
+        </p>
+      </div>
+    </div>
+
+  <!-- NÚT QUAY VỀ TRANG CHỦ -->
+  <div class="back-navigation">
+    <a href="index.html" class="back-btn">
+      <i class="fa-solid fa-house"></i> Quay lại trang chủ
+    </a>
+  </div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" class="f-logo">
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <div>0935.656.603<br>0989.390.139<br>0986.265.679</div>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="#">Trường TCCN Bình Dương</a>
+            </div>
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-column address-col">
+            <div class="address-info">
+                <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+                <div class="info-box">
+                    <span>📍 Địa chỉ:</span>
+                    <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp Bình Dương
+                </a>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6358352656363!2d106.7770884!3d11.0284422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174da34c7159483%3A0x2b496501042687fe!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5n Nghi峄囈cCBCw6G5oIETGsMahbmc!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy">
+                </iframe>
+        </div>
+    </div>
+</footer>
+  </div>
+</body>
+</html>

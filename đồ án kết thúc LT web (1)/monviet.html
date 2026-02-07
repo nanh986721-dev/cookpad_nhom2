@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Món Việt</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="footer.css">
+</head>
+<body>
+        <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <form id="emailLoginForm">
+                <input type="email" id="emailInput" placeholder="Email của bạn" required>
+                <input type="password" id="passInput" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+            </form>
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+
+    <h1>Các Món Ăn Việt</h1>
+
+<input id="search" placeholder="Tìm món..." style="padding:10px">
+<div id="card-container" class = "card-container"></div>
+<button class="back-button" onclick="window.location.href='index.html'">
+⬅ Trang chủ
+</button>
+
+
+<script>
+    const monViet=[
+{id:"padthai",name:"Phở Bò",area:"Bánh phở mềm, nước dùng trong ngọt xương, thịt bò tái/chín thơm",image:"./anhbaocao/phobo.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>- Nước Dùng:<br>• 1kg xương bò (xương ống)<br>• 300g thịt bò nạm<br>• 1 củ gừng<br>• 2 củ hành tây<br>• 1 thanh quế<br>• 1 thìa hạt ngò<br><br>- Gia Vị:<br>• Muối<br>• Đường Phèn<br>• Nước mắm<br>• Bột ngọt<br><br>- Ăn Kèm:<br>• Bánh phở tươi<br>• Thịt bò tái/chín<br>• Hành lá, hành tím, ngò gai...<br>• Giá đỗ, chanh, ớt<br><br>--- Cách Nấu ---<br>- Bước 1: Sơ chế xương<br>• Xương bò trụng nước sôi 3-5 phút (giúp nước trong)<br><br>- Bước 2: Hầm nước dùng<br>• Cho xương và thịt vào nồi<br>• Cho 3-4 lít nước<br>• Hầm nhỏ lửa 1,5-2 tiếng<br>• Hớt bọt thường xuyên<br><br>- Bước 3: Nướng gia vị<br>• Nướng cháy nhẹ gừng và hành tây<br>• Rang thơm: hồi, quế, ngò<br>• Bỏ tất cả vào nồi<br><br>- Bước 4: Nêm nước phở<br>• 2 thìa muối<br>• 2 thìa đường phèn<br>• 3 thìa nước mắm<br><br>- Bước 5: Hoàn thành<br>• Vớt thịt ra thái lát vừa ăn<br>• Trụng phở cho vào tô<br>• Xếp thịt vừa mắt và chan nước dùng<br>• Rắc hành, ngò cho thơm<br>• Ăn<br>"
+},
+
+{id:"tomyum",name:"Bún Bò",area:"Bún nước cay nhẹ, thịt bò, giò heo, mắm ruốc đậm đà",image:"./anhbaocao/bunbo.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>- Nước Dùng:<br>• 1kg xương bò<br>• 500g bắp bò<br>• 3 củ cây sả<br>• 1 củ hành tây<br>• 1 củ gừng<br><br>- Gia Vị:<br>• Muối<br>• 2 Muỗng mắm ruốc Huế<br>• 1 Muỗng sate<br>• 1 Muỗng màu điều<br><br>- Ăn Kèm:<br>• Bún sợi to<br>• Thịt bò tái/chín<br>• Hành lá, rau răm<br>• Giá đỗ, chanh, ớt<br><br>--- Cách Nấu ---<br>- Bước 1: Sơ chế xương<br>• Xương bò trụng nước sôi 3-5 phút (giúp nước trong)<br><br>- Bước 2: Hầm nước dùng<br>• Cho xương và thịt vào nồi<br>• Cho 3-4 lít nước<br>• Hầm nhỏ lửa 1,5-2 tiếng<br>• Hớt bọt thường xuyên<br><br>- Bước 3: Nêm mắm ruốc<br>• Hòa mắm ruốc với 1 chén nước<br>• Lọc lấy nước<br>• Bỏ tất cả vào nồi<br><br>- Bước 4: Phi sate<br>• Phi dầu điều và sate cho thơm<br>• Cho vào nổi quậy đều<br><br>- Bước 5: Nêm gia vị<br>• 2 muỗng muối<br>• 3 muỗng nước mắm<br>• 2 muỗng đường phèn<br><br>- Bước 6: Hoàn thành<br>• Vớt thịt ra cắt lát<br>• Trụng bún cho vào tô<br>• Xếp thịt chan nước<br>• Rắc hành, ngò cho thơm<br>• Ăn<br>"
+},
+
+{id:"somtam",name:"Bún Chả",area:"Thịt nướng than ăn kèm bún, rau sống và nước mắm chua ngọt",image:"./anhbaocao/buncha.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>Phần chả:<br>• 300g thịt ba chỉ<br>• 300g thịt nạc vai xay<br>• 2 muỗng nước mắm<br>• 1 muỗng đường<br>• 1 muỗng mật ong<br>• 1 muỗng dầu hào<br>• tỏi + hành tím băm<br>• tiêu<br><br>- Nước chấm:<br>• 200g nước mắm<br>• 100ml nước lọc<br>• 2-3 muỗng đường<br>• 2 muỗng giấm/chanh<br>• đu đủ xanh/cà rốt bào sợi<br>• tỏi ớt băm<br><br>- Cách làm:<br>• Ướp thịt:<br>Trộn tất cả gia vị với thịt để 30p cho thấm<br>• Nướng chả:<br>Nướng than/nồi chiên/áp chả đến khi vàng đều<br>• Pha nước chấm:<br>Đun nhẹ nước mắm + nước + đường<br>• Tắt bếp cho giấm/ chanh tỏi ớt vào<br>• Thả đu đủ cà rốt vào<br>• Cho char vào bát nước chấm ăn kèm bún và rau sống"
+},
+
+{id:"curry",name:"Bánh Mì",area:"Bánh mì giòn, kẹp thịt, pate, đồ chua và rau thơm",image:"./anhbaocao/banhmi.jpg",
+congthuc:"<br>--- Nguyên Liệu ---<br>• Bánh mì<br><br>-Phần nhân:<br>• Thịt nguội/chả lụa/thịt nướng/trứng ốp la<br>• pate heo/bò<br><br>- Rau:<br>• Dưa leo<br>• Đồ chua<br>• Ngò hành lá<br>• Ớt<br><br>- Gia vị:<br>• Mayonnaise<br>• Nước tương xì dầu<br>• Maggi<br><br>- Cách làm:<br>• Chuẩn bị bánh mì cho vô nồi/lò 3-5p cho giòn<br>• Rạch dọc bánh mì<br>• Lần lượt cho pate/ mayo/thit/chả/trứng/Ngò/đồ chua/dưa leo/rưới nước tương...<br>• Kẹp lại và ăn"
+},
+
+{id:"gaengsom",name:"Bánh Xèo",area:"Bánh giòn nhân tôm thịt, giá đỗ, ăn cuốn rau sống",image:"./anhbaocao/banhxeo.jpeg",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>-Bột bánh xèo:<br>• 200g bột bánh xèo (hoặc bột gạo)<br>• 250ml nước<br>• 100ml nước cốt dùa<br>• 1,2 muỗng cà phê bột nghệ<br>• 1,2 Muỗng muối<br>• Hành lá cắt nhỏ<br><br>- Nhân:<br>• 200g thịt ba chỉ cắt nhỏ<br>• 150g tôm cắt hạt lựu<br>• Giá đỗ <br>• Hành tây<br><br>- Ăn kèm:<br>• Xà lách, cải xanh, rau thơm<br><br>- Nước chấm:<br>• Nước mắm chua ngọt (mắm + đường +chanh+tỏi ớt) quậy đều<br><br>- Cách làm:<br><br>- Bước 1: pha bột<br>• trộn bột + nước + nước cốt dùa + nghệ + muối + hành lá quậy đều để nghỉ 20p<br><br>- Bước 2: xào sơ nhân<br>• Phi hành cho thịt, tôm vào đảo chín sơ<br><br>- Bước 3: đổ bánh<br>• Làm nóng chảo<br>• Cho thịt tôm vào chảo<br>• Múc bột tráng mỏng<br>• Thêm giá<br>• Đậy nắp 1p<br>• Mở nắp chiến đến khi viền bánh vàng giòn<br>• Gâppj đôi<br>• Cuốn rau + bánh xèo + chấm nước mắm<br>• Ănnn"
+},
+
+{id:"kha",name:"Cơm Tấm",area:"Cơm gạo tấm, sườn nướng, trứng, bì, chả",image:"./anhbaocao/comtam.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>- Cơm:<br>• 300g gạo tấm<br>• nước<br><br>- Sườn nướng:<br>• 300g sườn cốt lết<br>• 2 muỗng nước mắm<br>• 1 muỗng đường<br>• 1 muỗng mật ong<br>• 1 muỗng dầu hào<br>• Tỏi + hành băm<br>• tiêu<br><br>- Ăn kèm:<br>• trứng opla<br>• chả trứng/bì<br>• dưa leo cà chua<br><br>- Nước mắm:<br>• 3 muỗng nước mắm<br>• 2 muỗng đường<br>• 1 muỗng nước cốt chanh<br>• Tỏi ớt băm<br><br>- Cách làm:<br>• Nấu cơm: vo gạo, cho nước hơi nhiều hơn trung bình và nấu chín<br>• Ướp sườn: trộn tất cả gia vị vào ướp 30p-2 tiếng<br>• Nướng sườn: nướng than cho vàng thơm<br>• Làm đồ chua: trộn cà rốt đỏ và trắng với giấm + đường để ngâm 15p<br>• Pha nước mắm: Trộn tất cả nguyên liệu nước mắm nêm chua ngọt vừa<br>• Dọn cơm: Xới cơm, thêm sườn< trứng, bì chả< dưa leo đồ chua, cham mắm <br>• Ăn"
+},
+
+{id:"moo",name:"Chả Giò",area:"Nem rán giòn, nhân thịt, miến, mộc nhĩ",image:"./anhbaocao/chagio.png",
+congthuc:"<br>--- Nguyên Liệu ---<br><br> Nhân:<br>• 200g thịt heo xay<br>• 100g tôm băm<br>• 1 củ cà rốt bào sợi<br>• 10g miến ngâm nhỏ<br>• 10g mộc nhĩ<br>• 1 quả trứng<br>• hành tím băm<br>• muối+ tiêu+hạt nêm<br><br>- Cuốn:<br>• Bánh tráng cuốn chả giò<br><br>- Ăn kèm: <br>• rau sống<br>• bún tùy thích<br><br>-Nước chấm: nước mắm+ đường+chanh+tỏi ớt<br><br>- cách làm:<br>• trộn nhân: cho tất cả nguyên liệu vào tô trộn đều<br>• cuốn: trải bánh tráng cho nhân vào và cuốn chặt tay<br>• Chiên: dàu vừa nóng cho chả vào chiên lửa liêu riu, khi vàng vớt ra để ráo dầu<br>• Ăn: cuốn rau + chả giò + chấm mắm "
+},
+
+{id:"larb",name:"Gỏi Cuốn",area:"Cuốn tươi tôm thịt, rau sống, bún, chấm mắm đậu",image:"./anhbaocao/goicuon.webp",
+congthuc:"<br>--- Nguyên Liệu ---<br><br>Nhân:<br>• 200g tôm luộc<br>• 150g ba chỉ thá mỏng<br>• Bún tươi<br>• Xà lách, rau sống<br><br>- Cuốn:<br>• Bánh tráng mỏng<br><br.- nước chấm đậu phộng:<br>• 2 muỗng bơ đậu phộng<br>• 1 muỗng nước mắm<br>• 1 muỗng đường<br>• Ớt + tỏi băm<br>• ít nước<br><br>- Cách làmm<br>• Chuẩn bị nhân: luộc tôm, thịt và thái sẵn, rau rửa để ráo<br>• Pha nước chấm: đun nhẹ bơ đậu + mắm + đường + nước khuấy tan thêm tỏi ớt<br>• Cuốn: nhúng bánh tráng qua nước trải ra và xếp rau + bún + thịt + tôm cuốn chặt tay<br>• Ăn: chấm tương đậu phộng và thưởng thức"
+},
+
+];
+
+render(monViet);
+
+function render(ds){
+const box=document.getElementById("card-container");
+box.innerHTML="";
+ds.forEach(mon=>{
+ const card=document.createElement("div");
+ card.className="card";
+ card.innerHTML=`
+ <img src="${mon.image}">
+ <h2>${mon.name}</h2>
+ <p><b>Mô tả:</b><br> ${mon.area}</p>`;
+ card.onclick=()=>{
+ localStorage.setItem("ct",JSON.stringify(mon));
+ window.location="congthuc.html";
+ };
+ box.appendChild(card);
+});
+}
+
+document.getElementById("search").oninput=function(){
+ let key=this.value.toLowerCase();
+ let loc=monViet.filter(m=>m.name.toLowerCase().includes(key));
+ render(loc);
+}
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" class="f-logo">
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <div>0935.656.603<br>0989.390.139<br>0986.265.679</div>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="#">Trường TCCN Bình Dương</a>
+            </div>
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-column address-col">
+            <div class="address-info">
+                <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+                <div class="info-box">
+                    <span>📍 Địa chỉ:</span>
+                    <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp Bình Dương
+                </a>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6358352656363!2d106.7770884!3d11.0284422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174da34c7159483%3A0x2b496501042687fe!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5n Nghi峄囈cCBCw6G5oIETGsMahbmc!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy">
+                </iframe>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

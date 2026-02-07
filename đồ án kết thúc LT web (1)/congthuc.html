@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Công thức</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="footer.css">
+</head>
+<body>
+
+        <nav class="navbar">
+        <div class="logo">
+            <img  src="./logo (1)/meocook.png" alt="Chef Cat">
+            <span>Mèo&Kácookpad</span>
+        </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">Trang chủ</a></li>
+            <li><a href="monviet.html" class="nav-item">Món Việt</a></li>
+            <li><a href="monnhat.html" class="nav-item">Món Nhật</a></li>
+            <li><a href="montrung.html" class="nav-item">Món Trung</a></li>
+            <li><a href="monthai.html" class="nav-item">Món Thái</a></li>
+            <li><a href="thanhvien.html" class="nav-item">Thành viên</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input id="searchHome" type="text" placeholder="Tìm kiếm món..." autocomplete="off">
+                <button class="search-btn" onclick="timKiemHome()">🔍</button>
+                <ul id="suggestBox" class="suggest-box"></ul>
+            </div>
+
+            
+            <div class="auth-group">
+                <button id="loginBtn" class="btn btn-login">Đăng nhập</button>
+                <button id="logoutBtn" class="btn btn-logout" style="display: none;">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Chào mừng bạn!</h2>
+        
+        <div class="auth-options">
+            <form id="emailLoginForm">
+                <input type="email" id="emailInput" placeholder="Email của bạn" required>
+                <input type="password" id="passInput" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-email">Đăng nhập bằng Email</button>
+            </form>
+
+            <div class="divider"><span>HOẶC</span></div>
+
+            <button class="btn-google" id="googleBtn">
+                <img src="./logo (1)/gg.png" alt="Google">
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="noidung"></div>
+
+<button onclick="history.back()" class="btn-back">⬅ Quay lại</button>
+
+<script>
+const data = JSON.parse(localStorage.getItem("ct"));
+
+document.getElementById("noidung").innerHTML = `
+<h1>${data.name}</h1>
+
+<div class="image-box">
+    <img src="${data.image}" class="side-img">
+
+    <img src="${data.image}" class="main-img">
+
+    <img src="${data.image}" class="side-img">
+
+</div>
+
+<h2>Công thức:</h2>
+<p>${data.congthuc}</p>
+`;
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- Logo -->
+        <div class="footer-column logo-col">
+            <img src="./logo (1)/logo-truong.png" alt="Logo Trường" class="f-logo">
+        </div>
+
+        <!-- Liên hệ -->
+        <div class="footer-column">
+            <div class="info-box">
+                <span>📞 Hotline:</span>
+                <a href="tel:0935656603">0935.656.603 <br> 0989.390.139 <br> 0986.265.679</a>
+            </div>
+        </div>
+
+        <!-- Website + slogan -->
+        <div class="footer-column">
+            <div class="info-box">
+                <span>🌐 Website:</span>
+                <a href="https://bdi.edu.vn/" target="_blank">Trường TCCN Bình Dương</a>
+            </div>
+
+            <div class="info-box">
+                <span>✉️ Email:</span>
+                <a href="mailto:truongtccnbd@gmail.com">truongtccnbd@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- Địa chỉ -->
+        <div class="footer-column">
+            <p class="slogan">"Món ngon mỗi ngày cùng Mèo&Ká"</p>
+            <div class="info-box address-box">
+                <span>📍 Địa chỉ:</span>
+                <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+Trung+C%E1%BA%A5p+C%C3%B4ng+Nghi%E1%BB%87p+B%C3%ACnh+D%C6%B0%C6%A1ng/"
+                   target="_blank">
+                    Trường Trung cấp Công nghiệp<br>
+                    Bình Dương
+                </a>
+            </div>
+        </div>
+
+</body>
+</html>
